@@ -358,8 +358,6 @@
     font-size: 12px; font-weight: 500; color: var(--fg2); margin-bottom: 18px;
   }
   .updated-dot { width: 6px; height: 6px; border-radius: 50%; background: #48b06a; flex-shrink: 0; }
-  .view-count { margin-left: 6px; }
-  .view-count[hidden] { display: none; }
   .page-footer {
     text-align: center; padding: 14px 0 24px;
     font-size: 12px; color: var(--fg2);
@@ -410,7 +408,7 @@
 
   <!-- LEADERBOARD -->
   <div class="panel active" id="panel-lb">
-    <div class="updated-badge"><span class="updated-dot"></span>Last updated 25 Oct 2026</div><div class="updated-badge view-count" id="view-count" hidden></div>
+    <div class="updated-badge"><span class="updated-dot"></span>Last updated 25 Oct 2026</div>
     <div class="stats-bar">
       <div class="stat"><div class="stat-val" style="color:var(--iconic)">1</div><div class="stat-label">Iconic</div></div>
       <div class="stat"><div class="stat-val" style="color:var(--enchanted)">9</div><div class="stat-label">Enchanted</div></div>
@@ -737,16 +735,6 @@ function switchTab(id) {
     p.classList.toggle("active", p.id === "panel-"+id);
   });
 }
-
-// Public page view count from GoatCounter (badge stays hidden if unavailable)
-fetch("https://redhobbygames.goatcounter.com/counter/" + encodeURIComponent(location.pathname) + ".json")
-  .then(r => r.ok ? r.json() : Promise.reject())
-  .then(d => {
-    const el = document.getElementById("view-count");
-    el.textContent = "👁 " + d.count + " views";
-    el.hidden = false;
-  })
-  .catch(() => {});
 </script>
 <!-- GoatCounter page view tracking: dashboard at https://redhobbygames.goatcounter.com -->
 <script data-goatcounter="https://redhobbygames.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
